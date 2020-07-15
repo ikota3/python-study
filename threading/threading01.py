@@ -4,9 +4,9 @@ import time
 
 def run(arg):
     print(f"arg: {arg}, thread name: {threading.current_thread().name}")
-    print("waiting 1 seconds.")
+    print(f"waiting 1 seconds. thread name: {threading.current_thread().name}")
     time.sleep(1)
-    print("1 second passed.")
+    print(f"1 second passed. thread name: {threading.current_thread().name}")
 
 
 # target=実行したい関数, args=関数に渡す引数, name=スレッドに命名
@@ -30,3 +30,13 @@ thread_one.join()
 thread_second.join()
 
 print(threading.currentThread().name)
+
+"""Output
+>> arg: one, thread name: Thread-1
+>> waiting 1 seconds. thread name: Thread-1
+>> arg: two, thread name: thread_second
+>> waiting 1 seconds. thread name: thread_second
+>> 1 second passed. thread name: thread_second
+>> 1 second passed. thread name: Thread-1
+>> MainThread
+"""
